@@ -1,0 +1,73 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=auction
+      - DB_PASSWORD=auction
+      - DB_NAME=auction
+      - KAFKA_BROKER=kafka:9092
+      - TZ=Europe/Moscow
+    depends_on:
+      - db
+      - kafka
+    restart: on-failure
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Europe/Moscow
+    depends_on:
+      - app
+    restart: on-failure
+
+  kafka:
+    image: bitnamilegacy/kafka:latest
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9092,EXTERNAL://:9093,CONTROLLER://:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:9092,EXTERNAL://localhost:9093
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - KAFKA_CFG_LOG_DIRS=/bitnami/kafka/data
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local-kafka
+      - KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - kafka
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: auction
+      POSTGRES_PASSWORD: auction
+      POSTGRES_DB: auction
+      TZ: Europe/Moscow
+    ports:
+      - "5432:5432"
+    volumes:
+      - auction-postgres:/var/lib/postgresql/data
+
+volumes:
+  auction-postgres:

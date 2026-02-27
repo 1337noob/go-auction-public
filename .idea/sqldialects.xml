@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/migrations/000001_create_auction_schema.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000001_create_auction_schema.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000002_create_auction_event_store_table.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000002_create_auction_event_store_table.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000003_create_auction_snapshot_store_table.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000003_create_auction_snapshot_store_table.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000005_create_scheduler_schema.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000005_create_scheduler_schema.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000006_create_scheduler_tasks_table.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000006_create_scheduler_tasks_table.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000007_create_scheduler_cached_auction_table.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000007_create_scheduler_cached_auction_table.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000008_create_auction_outbox_table.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000008_create_auction_outbox_table.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000009_create_scheduler_outbox_table.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/000009_create_scheduler_outbox_table.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/backup/000001_create_outbox_table.down.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/migrations/backup/000001_create_outbox_table.up.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/pkg/outbox/postgres_repository.go" dialect="GenericSQL" />
+    <file url="PROJECT" dialect="PostgreSQL" />
+  </component>
+</project>
